@@ -1,0 +1,47 @@
+.fuzz{
+    animation:fuzz 0.1s linear 0s infinite ;
+    -moz-animation: fuzz 0.1s linear 0s infinite ; /* Firefox */
+    -webkit-animation: fuzz 0.1s linear 0s infinite ; /* Safari and Chrome */
+    -o-animation: fuzz 0.1s linear 0s infinite ; /* Opera */
+    backface-visibility:hidden;
+-webkit-backface-visibility:hidden; /* Chrome and Safari */
+-moz-backface-visibility:hidden; /* Firefox */
+-ms-backface-visibility:hidden; /* Internet Explorer */
+}
+
+
+@keyframes fuzz
+{
+0%   {transform: rotate(5deg) translate3d( 0px,0,0);}
+25%  {transform: rotate(-5deg) translate3d( -5px,0,0);}
+50%  {transform: rotate(0deg) translate3d( 0px,0,0);}
+75%  {transform: rotate(5deg) translate3d( 5px,0,0);}
+100% {transform: rotate(0deg) translate3d( 0px,0,0);}
+}
+
+@-moz-keyframes fuzz /* Firefox */
+{
+0%   {-moz-transform: rotate(5deg) translate3d( 0px,0,0);}
+25%  {-moz-transform: rotate(-5deg) translate3d( -5px,0,0);}
+50%  {-moz-transform: rotate(0deg) translate3d( 0px,0,0);}
+75%  {-moz-transform: rotate(5deg) translate3d( 5px,0,0);}
+100% {-moz-transform: rotate(0deg) translate3d( 0px,0,0);}
+}
+
+@-webkit-keyframes fuzz /* Safari and Chrome */
+{
+0%   {-webkit-transform: rotate(5deg) translate3d( 0px,0,0);}
+25%  {-webkit-transform: rotate(-5deg) translate3d( -5px,0,0);}
+50%  {-webkit-transform: rotate(0deg) translate3d( 0px,0,0);}
+75%  {-webkit-transform: rotate(5deg) translate3d( 5px,0,0);}
+100% {-webkit-transform: rotate(0deg) translate3d( 0px,0,0);}
+}
+
+@-o-keyframes fuzz /* Opera */
+{
+0%   {-o-transform: rotate(5deg) translate3d( 0px,0,0);}
+25%  {-o-transform: rotate(-5deg) translate3d( -5px,0,0);}
+50%  {-o-transform: rotate(0deg) translate3d( 0px,0,0);}
+75%  {-o-transform: rotate(5deg) translate3d( 5px,0,0);}
+100% {-o-transform: rotate(0deg) translate3d( 0px,0,0);}
+}

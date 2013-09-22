@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Shroom Fever!</title>
+		<script src="include/main.js"></script>
+		<link rel="stylesheet" href="include/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="include/css/style.css" />
+	</head>
+	<body onload="Game.Init()">
+		<div class="container">
+			<div id="main" class="row">
+				<div class="span12">
+					<div class="row">
+						<div id="phrase" align="center"></div>
+						<div class="span9">
+							<input type="button" value="Pick!" onclick="Game.Pick()" />
+							<span id="shrooms"></span><br />
+							<span id="sps"></span>
+							
+						</div>
+						<div class="span3">
+							<div id="shop"></div>
+						</div>
+					</div>
+					v. <span id="version"></span> - <a href="changelog">Changelog</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
