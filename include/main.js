@@ -4,14 +4,14 @@
 	Some rights reserved
 */
 
-DEBUG=true;
+DEBUG=false;
 
 Game={};
 
 Game.Launch=function() {
 	
 	Game.Init=function(){ //initialize stuff
-		Game.version=0.1;
+		Game.version=0.2;
 		
 		Game.shrooms=0;
 		Game.totalshrooms=0;
@@ -31,6 +31,9 @@ Game.Launch=function() {
 		
 		Game.magnets=0;
 		Game.magnetcost=1000;
+		
+		Game.butteredcats=0;
+		Game.butteredcatcost=5000;
 		
 		setInterval(function() {Game.Tick();},100);
 		setInterval(function() {Game.Phrases();},10000);
@@ -53,22 +56,33 @@ Game.Launch=function() {
 		Game.Setupgradecosts();
 		shopcode='';
 		if (Game.totalshrooms>=10) {
-				shopcode+='<input type="button" value="Slave - ' + Game.slavecost + '" onclick="Game.Buy(\'slave\')"';
+				shopcode+='<input type="button" value="Slave - ' + Game.slavecost + '" onclick="Game.Buy(\'slave\')" ';
+				shopcode+='title="Add +0.1 SpS"';
 				if (Game.shrooms<Game.slavecost)
 					shopcode+="disabled";
 				shopcode+=" /> - " + Game.slaves + "<br />";
 		}
 		if (Game.totalshrooms>=100) {
-				shopcode+='<input type="button" value="Harvester - ' + Game.harvestercost + '" onclick="Game.Buy(\'harvester\')"';
+				shopcode+='<input type="button" value="Harvester - ' + Game.harvestercost + '" onclick="Game.Buy(\'harvester\')" ';
+				shopcode+='title="Add +2 SpS"';
 				if (Game.shrooms<Game.harvestercost)
 					shopcode+="disabled";
 				shopcode+=" /> - " + Game.harvesters + "<br />";
 		}
 		if (Game.totalshrooms>=1000) {
-				shopcode+='<input type="button" value="Shroom Magnet - ' + Game.magnetcost + '" onclick="Game.Buy(\'magnet\')"';
+				shopcode+='<input type="button" value="Shroom Magnet - ' + Game.magnetcost + '" onclick="Game.Buy(\'magnet\')" ';
+				shopcode+='title="Add +100 SpS"';
 				if (Game.shrooms<Game.magnetcost)
 					shopcode+="disabled";
 				shopcode+=" /> - " + Game.magnets + "<br />";
+		}
+		
+		if (Game.totalshrooms>=5000) {
+				shopcode+='<input type="button" value="Buttered cat engine - ' + Game.butteredcatcost + '" onclick="Game.Buy(\'butteredcat\')" ';
+				shopcode+='title="Add a permanent +5 SpS for each buildings"';
+				if (Game.shrooms<Game.butteredcatcost)
+					shopcode+="disabled";
+				shopcode+=" /> - " + Game.butteredcats + "<br />";
 		}
 		
 		document.getElementById("shop").innerHTML=shopcode;	
@@ -78,6 +92,7 @@ Game.Launch=function() {
 		Game.slavecost=Game.CostFunction(10,Game.slaves);
 		Game.harvestercost=Game.CostFunction(100,Game.harvesters);
 		Game.magnetcost=Game.CostFunction(1000,Game.magnets);
+		Game.butteredcatcost=Game.CostFunction(5000,Game.butteredcats);
 	};
 	
 	Game.Buy = function(what) {
@@ -95,12 +110,17 @@ Game.Launch=function() {
 				Game.magnets+=1;
 				Game.shrooms-=Game.magnetcost;
 				break;
+			case 'butteredcat':
+				Game.butteredcats+=1;
+				Game.shrooms-=Game.butteredcatcost;
+				break;
 		}
 		Game.Shop();
 	};
 	
 	Game.Tick = function() {
 		add=0;
+		count=Game.slaves + Game.harvesters + Game.magnets;
 		if (Game.slaves>0){
 			add+=Game.slaves * 0.1;
 		}
@@ -110,6 +130,9 @@ Game.Launch=function() {
 		if (Game.magnets>0){
 			add+=Game.magnets * 100;
 		}
+		if (Game.butteredcats>0){
+			add+=(count*5)*Game.butteredcats;
+		}	
 				
 		Game.shrooms+=add/10;
 		document.getElementById("shrooms").innerHTML=Math.floor(Game.shrooms) + " shrooms";
@@ -133,6 +156,9 @@ Game.Launch=function() {
 		}
 		if(Game.magnets>0){
 			phrases.push("Fuckin' magnets, how do they work?");
+		}
+		if(Game.butteredcats>0){
+			phrases.push("They see me rollin', they hatin'");
 		}
 		
 		i=Math.floor(Math.random()*phrases.length);

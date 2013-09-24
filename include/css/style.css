@@ -45,3 +45,7 @@
 75%  {-o-transform: rotate(5deg) translate3d( 5px,0,0);}
 100% {-o-transform: rotate(0deg) translate3d( 0px,0,0);}
 }
+
+#footer {
+	text-align: right;
+}
