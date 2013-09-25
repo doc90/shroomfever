@@ -49,3 +49,11 @@
 #footer {
 	text-align: right;
 }
+
+.container
+{
+background: #25bfda; /* non-css3 browsers */
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#25bfda'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#25bfda)); /* Safari, Opera, Chrome,.. */
+background: -moz-linear-gradient(top,  #f7f7f7,  #25bfda); /* firefox 3.6+ */
+}

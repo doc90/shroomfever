@@ -11,7 +11,7 @@ Game={};
 Game.Launch=function() {
 	
 	Game.Init=function(){ //initialize stuff
-		Game.version=0.2;
+		Game.version=0.22;
 		
 		Game.shrooms=0;
 		Game.totalshrooms=0;
@@ -135,8 +135,10 @@ Game.Launch=function() {
 		}	
 				
 		Game.shrooms+=add/10;
+		Game.totalshrooms+=add/10;
 		document.getElementById("shrooms").innerHTML=Math.floor(Game.shrooms) + " shrooms";
-		document.getElementById("sps").innerHTML=add + " SpS";
+		document.getElementById("sps").innerHTML=add.toFixed(1) + " SpS";
+		document.title = Math.floor(Game.shrooms) + " shrooms | Shroom fever!";
 		if(Game.updateshop)
 			Game.Shop();
 		Game.updateshop=false;	
